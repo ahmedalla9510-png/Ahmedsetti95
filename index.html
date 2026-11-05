@@ -137,7 +137,7 @@ footer b{display:block;font:700 26px Amiri,serif;color:var(--gl)}
 <div class="r hl"><b id="vc"></b><span id="vcn"></span></div>
 <div class="r ghost"><b>19</b><span>…</span></div></div>
 <ol class="steps" id="steps"></ol><p class="note" id="vnote"></p></section>
-<section id="video"><h2>فيديو الحملة</h2><p class="sub">شاهد الفيديو</p>
+<section id="video"><h2>فيديو</h2><p class="sub">شاهد الفيديو</p>
 <div class="vid"><video controls playsinline preload="metadata" poster="poster.jpg"><source src="video.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video></div></section>
 </main>
 
@@ -227,7 +227,7 @@ $("newsl").innerHTML=C.news.map((a,i)=>`<article class="card art" id="a${i}">${a
 $("newsl").onclick=e=>{const b=e.target.closest("button");if(b){const a=$("a"+b.dataset.i);a.classList.toggle("open");b.textContent=a.classList.contains("open")?"إخفاء":"قراءة المزيد"}};
 const k=C.contact, digits=s=>String(s).replace(/\D/g,"");
 const nat=String(k.phone).replace(/^\+213/,"0").replace(/(\d{4})(\d{2})(\d{2})(\d{2})$/,"$1 $2 $3 $4");
-const links=[[k.phone?`اتصال <bdi dir="ltr">${nat}</bdi>`:"اتصال","phone",k.phone&&"tel:"+k.phone],["واتساب","chat",k.whatsapp&&"https://wa.me/"+digits(k.whatsapp)],["تيليغرام","",k.telegram&&"https://t.me/"+k.telegram],["فيسبوك","",k.facebook],["إنستغرام","",k.instagram],["تيك توك","",k.tiktok],["بريد إلكتروني","mail",k.email&&"mailto:"+k.email]];
+const links=[["اتصال","phone",k.phone&&"tel:"+k.phone],["واتساب","chat",k.whatsapp&&"https://wa.me/"+digits(k.whatsapp)],["تيليغرام","",k.telegram&&"https://t.me/"+k.telegram],["فيسبوك","",k.facebook],["إنستغرام","",k.instagram],["تيك توك","",k.tiktok],["بريد إلكتروني","mail",k.email&&"mailto:"+k.email]];
 $("cg").innerHTML=links.map(l=>`<a href="${l[2]?esc(l[2]):"#contact"}" ${l[2]?'rel="noopener"':'class="todo" aria-disabled="true"'}>${l[0]}</a>`).join("");
 $("addr").innerHTML=svg("pin").replace("<svg",'<svg style="width:20px;height:20px;stroke:var(--acc);fill:none;stroke-width:2;vertical-align:middle;margin-inline-end:6px"')+esc(k.address)+(k.map?` — <a href="${esc(k.map)}" style="color:var(--acc);font-weight:700">الموقع على الخريطة</a>`:"");
 {const hr=document.querySelector(".hero");const g=C.gallery[0];if(g&&g.src){hr.classList.add("bg");hr.style.backgroundImage=`linear-gradient(180deg,rgba(8,51,29,.88),rgba(8,51,29,.78) 55%,rgba(8,51,29,.93)),url("${g.src}")`}}
@@ -243,9 +243,7 @@ $("sbar").innerHTML=`<a href="${k.phone?esc("tel:"+k.phone):"#contact"}">اتص�
 $("sh").onclick=share;
 document.addEventListener("click",e=>{const a=e.target.closest('a[href^="tel:"]');if(!a)return;e.preventDefault();
  try{(window.top||window).location.href=a.href}catch(x){try{location.href=a.href}catch(y){}}
- try{navigator.clipboard.writeText(k.phone)}catch(x){}
- let m=$("toast");if(!m){m=document.createElement("div");m.id="toast";m.style.cssText="position:fixed;left:50%;transform:translateX(-50%);bottom:96px;background:#08331d;color:#fff;border:1px solid #e3c06a;border-radius:12px;padding:10px 16px;font:700 15px Cairo,sans-serif;z-index:60";document.body.appendChild(m)}
- m.innerHTML='الرقم: <bdi dir="ltr">'+nat+'</bdi> (تم نسخه)';m.style.display="block";setTimeout(()=>m.style.display="none",4000)});
+});
 // الوضع الداكن (اختياري)
 const R=document.documentElement;
 try{const t=localStorage.getItem("theme");if(t)R.dataset.theme=t}catch(e){}
